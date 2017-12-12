@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
       i.vm.box = "ubuntu/zesty64"
       i.vm.hostname = "manager"
       i.vm.network "private_network", ip: "#{manager_ip}"
-      i.vm.provision "shell", path: "./provision.sh"
+      i.vm.provision "shell", path: "./scripts/vagrant_provision.sh"
       if File.file?("./hosts")
         i.vm.provision "file", source: "hosts", destination: "/tmp/hosts"
         i.vm.provision "shell", inline: "cat /tmp/hosts >> /etc/hosts", privileged: true
@@ -53,7 +53,7 @@ Vagrant.configure("2") do |config|
       i.vm.box = "ubuntu/zesty64"
       i.vm.hostname = instance[:name]
       i.vm.network "private_network", ip: "#{instance[:ip]}"
-      i.vm.provision "shell", path: "./provision.sh"
+      i.vm.provision "shell", path: "./vagrant_provision.sh"
       if File.file?("./hosts")
         i.vm.provision "file", source: "hosts", destination: "/tmp/hosts"
         i.vm.provision "shell", inline: "cat /tmp/hosts >> /etc/hosts", privileged: true
