@@ -1,11 +1,11 @@
 package pl.edu.agh.iosr.hello.controllers;
 
+import pl.edu.agh.iosr.hello.beans.GreetingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.edu.agh.iosr.hello.beans.GreetingResponse;
 import pl.edu.agh.iosr.hello.beans.VisitsRequest;
 import pl.edu.agh.iosr.hello.beans.VisitsResponse;
 import pl.edu.agh.iosr.hello.repository.GreetingEntry;

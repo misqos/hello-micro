@@ -6,7 +6,12 @@
 	<groupId>pl.edu.agh.iosr</groupId>
 	<artifactId>hello</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>greeting</module>
+		<module>visits</module>
+		<module>ui</module>
+	</modules>
+    <packaging>pom</packaging>
 
 	<name>hello</name>
 	<description>Demo project for Spring Boot</description>
