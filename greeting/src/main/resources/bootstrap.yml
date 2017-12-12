@@ -1,3 +1,5 @@
 spring:
   application:
     name: GreetingApplication
+server:
+  port: ${random.int[9090,9999]}

@@ -1,15 +1,14 @@
 package pl.edu.agh.iosr.hello.controllers;
 
+import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.iosr.hello.beans.GreetingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import pl.edu.agh.iosr.hello.beans.VisitsRequest;
 import pl.edu.agh.iosr.hello.beans.VisitsResponse;
 import pl.edu.agh.iosr.hello.repository.GreetingEntry;
 import pl.edu.agh.iosr.hello.repository.GreetingRepository;
+
+import java.util.Optional;
 
 @RestController
 public class GreetingController {
@@ -25,7 +24,11 @@ public class GreetingController {
     }
 
     @RequestMapping(value = "/visits", method = RequestMethod.POST)
-    public VisitsResponse visits(VisitsRequest request) {
-        return new VisitsResponse(greetingRepository.findOne(request.getName()).getCount());
+    public VisitsResponse visits(@RequestBody VisitsRequest request) {
+        return new VisitsResponse(
+                Optional.ofNullable(greetingRepository.findOne(request.getName()))
+                        .map(GreetingEntry::getCount)
+                        .orElse(0L)
+        );
     }
 }

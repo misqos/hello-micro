@@ -3,7 +3,10 @@ package pl.edu.agh.iosr.hello.beans;
 import java.util.Objects;
 
 public class VisitsRequest {
-    private final String name;
+    private String name;
+
+    public VisitsRequest() {
+    }
 
     public VisitsRequest(String name) {
         this.name = name;
@@ -11,6 +14,10 @@ public class VisitsRequest {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

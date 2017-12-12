@@ -3,8 +3,8 @@ package pl.edu.agh.iosr.hello.beans;
 import java.util.Objects;
 
 public class GreetingResponse {
-    private final String message;
-    private final long visits;
+    private String message;
+    private long visits;
 
     public GreetingResponse(final String message, final long visits) {
         this.message = message;
@@ -15,8 +15,16 @@ public class GreetingResponse {
         return message;
     }
 
+    public void setVisits(long visits) {
+        this.visits = visits;
+    }
+
     public long getVisits() {
         return visits;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override

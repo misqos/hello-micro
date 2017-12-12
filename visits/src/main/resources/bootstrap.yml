@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: VisitsApplication
+server:
+  port: ${random.int[9090,9099]}

@@ -3,7 +3,10 @@ package pl.edu.agh.iosr.hello.beans;
 import java.util.Objects;
 
 public class VisitsResponse {
-    private final long visits;
+    private long visits;
+
+    public VisitsResponse() {
+    }
 
     public VisitsResponse(long visits) {
         this.visits = visits;
@@ -11,6 +14,10 @@ public class VisitsResponse {
 
     public long getVisits() {
         return visits;
+    }
+
+    public void setVisits(long visits) {
+        this.visits = visits;
     }
 
     @Override
@@ -23,7 +30,6 @@ public class VisitsResponse {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(visits);
     }
 

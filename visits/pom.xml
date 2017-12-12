@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>visits</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>pl.edu.agh.iosr</groupId>
+            <artifactId>greeting</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

@@ -1,7 +1,7 @@
 package pl.edu.agh.iosr.hello.beans;
 
 public class GreetingRequest {
-    private final String name;
+    private String name;
 
     public GreetingRequest(String name) {
         this.name = name;
@@ -9,6 +9,10 @@ public class GreetingRequest {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
