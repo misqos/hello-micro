@@ -1,5 +1,21 @@
 spring:
   application:
     name: GreetingApplication
+  cloud:
+      consul:
+        discovery:
+          instanceId: ${spring.application.name}:${random.value}
+          healthCheckPath: /greeting-health-check
+          healthCheckInterval: 20s
+        config:
+          enabled: true
+          prefix: '/'
+          defaultContext: '/'
+          format: KEY_VALUE
+  spring:
+    profiles: production
+  data:
+    mongodb.uri: ${configuration.db.uri}
+    database: dbname
 server:
   port: ${random.int[9090,9999]}
