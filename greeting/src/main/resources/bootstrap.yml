@@ -3,6 +3,8 @@ spring:
     name: GreetingApplication
   cloud:
       consul:
+        host: consul1
+        port: 8500
         discovery:
           instanceId: ${spring.application.name}:${random.value}
           healthCheckPath: /greeting-health-check
@@ -15,7 +17,7 @@ spring:
   spring:
     profiles: production
   data:
-    mongodb.uri: ${configuration.db.uri}
+    mongodb.uri: mongodb://mongodb1:27017,mongodb2:27017,mongodb2:27017/dbname?replicaSet=rs0
     database: dbname
 server:
-  port: ${random.int[9090,9999]}
+  port: 8080

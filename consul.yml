@@ -83,3 +83,11 @@ services:
       - CONSUL=consul1
     ports:
       - 27017
+  app:
+    image: dupa
+    hostname: app
+    depends_on:
+      - mongodb2
+      - consul1
+    ports:
+      - "8080:8080"
