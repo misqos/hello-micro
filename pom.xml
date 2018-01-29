@@ -9,7 +9,6 @@
     <modules>
         <module>greeting</module>
 		<module>visits</module>
-		<module>ui</module>
 	</modules>
     <packaging>pom</packaging>
 

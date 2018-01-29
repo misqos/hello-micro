@@ -12,5 +12,6 @@ jobs:
       - checkout
       # Download and cache dependencies
       - run: mvn compile
+      - run: mvn verify
 
 
