@@ -13,5 +13,7 @@ jobs:
       # Download and cache dependencies
       - run: mvn compile
       - run: mvn verify
+      - setup_remote_docker
+      - run: ./build_docker.sh
 
 

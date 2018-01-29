@@ -11,6 +11,15 @@ services:
   mongodb:
     image: mongo:latest
     restart: always
-    build: ./mongosetup
     ports:
       - 27017:27017
+  greeting:
+    image: greeting:latest
+    ports:
+      - 8080:8080
+  visits:
+    image: visits:latest
+    depends_on:
+        - greeting
+    ports:
+      - 8081:8080

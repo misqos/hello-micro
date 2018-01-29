@@ -1,5 +1,9 @@
 spring:
   application:
     name: VisitsApplication
+  cloud:
+    consul:
+      host: consul
+      port: 8500
 server:
-  port: ${random.int[9090,9099]}
+  port: 8080

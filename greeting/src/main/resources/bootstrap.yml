@@ -1,5 +1,13 @@
 spring:
   application:
     name: GreetingApplication
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
 server:
-  port: ${random.int[9090,9999]}
+  port: 8080
