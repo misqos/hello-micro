@@ -56,3 +56,30 @@ services:
       - CONSUL_BIND_INTERFACE=eth0
     depends_on:
       - consul1
+  mongodb:
+    image: autopilotpattern/mongodb
+    command: --replSet=rs0
+    restart: always
+    build: ./mongosetup
+    environment:
+      - CONSUL=consul1
+    ports:
+      - 27017
+  mongodb1:
+    image: autopilotpattern/mongodb
+    command: --replSet=rs0
+    restart: always
+    build: ./mongosetup
+    environment:
+      - CONSUL=consul1
+    ports:
+      - 27017
+  mongodb2:
+    image: autopilotpattern/mongodb
+    command: --replSet=rs0
+    restart: always
+    build: ./mongosetup
+    environment:
+      - CONSUL=consul1
+    ports:
+      - 27017
