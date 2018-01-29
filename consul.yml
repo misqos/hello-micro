@@ -1,85 +1,16 @@
 version: '3'
 services:
-  consul1:
+  consul:
     image: consul:latest
-    hostname: "consul1"
+    environment:
+      CONSUL_LOCAL_CONFIG: '{"skip_leave_on_interrupt": true}'
+      CONSUL_BIND_INTERFACE: eth0
+    command: agent -ui -server -bootstrap-expect 1 -client 0.0.0.0 -log-level debug
     ports:
-      - "8400:8400"
       - "8500:8500"
-      - "8600:8600"
-    command: "agent -server -bootstrap-expect 3 -ui -disable-host-node-id -client 0.0.0.0"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-  consul2:
-    image: consul:latest
-    hostname: "consul2"
-    command: "agent -server -join consul1 -disable-host-node-id"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-    depends_on:
-      - consul1
-  consul3:
-    image: consul:latest
-    hostname: "consul3"
-    command: "agent -server -join consul1 -disable-host-node-id"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-    depends_on:
-      - consul1
-  consul4:
-    image: consul:latest
-    hostname: "consul4"
-    command: "agent -join consul1 -disable-host-node-id"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-    depends_on:
-      - consul1
-  consul5:
-    image: consul:latest
-    hostname: "consul5"
-    command: "agent -server -join consul1 -disable-host-node-id"
-    depends_on:
-      - consul1
-  consul6:
-    image: consul:latest
-    hostname: "consul6"
-    command: "agent -join consul1 -disable-host-node-id"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-    depends_on:
-      - consul1
-  consul7:
-    image: consul:latest
-    hostname: "consul7"
-    command: "agent -join consul1 -disable-host-node-id"
-    environment:
-      - CONSUL_BIND_INTERFACE=eth0
-    depends_on:
-      - consul1
   mongodb:
-    image: autopilotpattern/mongodb
-    command: --replSet=rs0
+    image: mongo:latest
     restart: always
     build: ./mongosetup
-    environment:
-      - CONSUL=consul1
     ports:
-      - 27017
-  mongodb1:
-    image: autopilotpattern/mongodb
-    command: --replSet=rs0
-    restart: always
-    build: ./mongosetup
-    environment:
-      - CONSUL=consul1
-    ports:
-      - 27017
-  mongodb2:
-    image: autopilotpattern/mongodb
-    command: --replSet=rs0
-    restart: always
-    build: ./mongosetup
-    environment:
-      - CONSUL=consul1
-    ports:
-      - 27017
+      - 27017:27017
