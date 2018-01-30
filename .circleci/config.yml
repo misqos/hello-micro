@@ -11,8 +11,7 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - run: mvn compile
-      - run: mvn verify
+      - run: mvn package
       - setup_remote_docker
       - run: ./build_docker.sh
 
