@@ -1,0 +1,46 @@
+version: '3'
+services:
+  consul:
+    image: consul:latest
+    environment:
+      CONSUL_LOCAL_CONFIG: '{"skip_leave_on_interrupt": true}'
+      CONSUL_BIND_INTERFACE: eth0
+    command: agent -ui -server -bootstrap-expect 1 -client 0.0.0.0 -log-level debug
+    ports:
+      - "8500:8500"
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+  greeting:
+    image: misqos/greeting:latest
+    build: greeting
+    deploy:
+      - replicas: 3
+    ports:
+      - 8080:8080
+  visits:
+    image: misqos/visits:latest
+    build: visits
+    deploy:
+      - replicas: 3
+    depends_on:
+      - greeting
+    ports:
+      - 8081:8080
+  generator:
+    image: n3integration/vegeta
+    environment:
+      DURATION: "1m"
+      TARGET: "http://greeting:8080/greeting"
+  chaos-pause:
+    image: gaiaadm/pumba
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: "pumba --debug --interval 40s pause --duration 20s re2:.*^greeting.*"
+  chaos-loss:
+    image: gaiaadm/pumba
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: "pumba --debug --interval 15s netem --duration 5s loss -p '50' re2:.*greeting.*"

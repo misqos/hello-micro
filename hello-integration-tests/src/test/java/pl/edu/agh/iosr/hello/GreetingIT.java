@@ -16,7 +16,7 @@ import static org.awaitility.Awaitility.given;
 public class GreetingIT {
     @ClassRule
     public static DockerComposeRule docker = DockerComposeRule.builder()
-            .file("../consul.yml")
+            .file("../it.yml")
             .waitingForService("mongodb", HealthChecks.toHaveAllPortsOpen())
             .waitingForService("consul", HealthChecks.toHaveAllPortsOpen())
             .waitingForService("greeting", HealthChecks.toHaveAllPortsOpen())

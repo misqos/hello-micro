@@ -11,7 +11,7 @@ jobs:
       - checkout
       # Download and cache dependencies
       - run: mvn -s .circleci.settings.xml package
-      - run: docker-compose -f consul.yml build
+      - run: docker-compose -f it.yml build
       - run: mvn -s .circleci.settings.xml verify
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push misqos/greeting
