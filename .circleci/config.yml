@@ -11,8 +11,8 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - run: mvn package
+      - run: mvn -s .circleci.settings.xml package
       - setup_remote_docker
       - run: ./build_docker.sh
-      - run: mvn verify
+      - run: mvn -s .circleci.settings.xml verify
 
