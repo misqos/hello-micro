@@ -31,7 +31,7 @@ public class GreetingIT {
                                 .url(HttpUrl.parse(
                                         new URIBuilder()
                                                 .setScheme("http")
-                                                .setHost("127.0.0.1")
+                                                .setHost("greeting")
                                                 .setPort(8080).toString()
                                         ).newBuilder().addPathSegments("greeting").build()
                                 ).get().build()
