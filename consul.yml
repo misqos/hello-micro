@@ -14,11 +14,13 @@ services:
     ports:
       - 27017:27017
   greeting:
-    image: greeting:latest
+    image: misqos/greeting:latest
+    build: greeting
     ports:
       - 8080:8080
   visits:
-    image: visits:latest
+    image: misqos/visits:latest
+    build: visits
     depends_on:
         - greeting
     ports:
